@@ -1,0 +1,9 @@
+../Core/Src/cobs_crc16.c:9:10:calculate_crc16	4
+../Core/Src/cobs_crc16.c:27:19:create_uart_tx_packet	1
+../Core/Src/cobs_crc16.c:40:8:cobs_encode	10
+../Core/Src/cobs_crc16.c:80:15:cobs_decode	11
+../Core/Src/cobs_crc16.c:112:8:encode_uart_tx_packet	1
+../Core/Src/cobs_crc16.c:129:6:verify_cobs_encoding	2
+../Core/Src/cobs_crc16.c:142:8:decode_cobs_data	1
+../Core/Src/cobs_crc16.c:147:6:decode_uart_rx_command	5
+../Core/Src/cobs_crc16.c:184:9:extract_command	13

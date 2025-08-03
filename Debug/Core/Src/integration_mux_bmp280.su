@@ -1,0 +1,5 @@
+../Core/Src/integration_mux_bmp280.c:15:6:bmp280_multi_init	32	static
+../Core/Src/integration_mux_bmp280.c:77:6:bmp280_multi_read_sensor	32	static
+../Core/Src/integration_mux_bmp280.c:111:6:bmp280_multi_force_measurement	24	static
+../Core/Src/integration_mux_bmp280.c:145:6:bmp280_multi_is_measuring	24	static
+../Core/Src/integration_mux_bmp280.c:170:6:bmp280_multi_read_differences	56	static

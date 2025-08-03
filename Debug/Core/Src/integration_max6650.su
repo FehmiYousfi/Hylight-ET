@@ -1,0 +1,11 @@
+../Core/Src/integration_max6650.c:40:6:MAX6650_Init	32	static
+../Core/Src/integration_max6650.c:76:6:MAX6650_ReadData	24	static
+../Core/Src/integration_max6650.c:102:6:MAX6650_ControlFan	24	static
+../Core/Src/integration_max6650.c:144:6:MAX6650_SetSpeedPercent	24	static
+../Core/Src/integration_max6650.c:170:6:MAX6650_GetSpeedPercent	24	static
+../Core/Src/integration_max6650.c:192:6:MAX6650_ReadAlarmStatus	16	static
+../Core/Src/integration_max6650.c:203:16:get_i2c_address	16	static
+../Core/Src/integration_max6650.c:219:16:get_kscale_value	16	static
+../Core/Src/integration_max6650.c:231:13:max6650_write_register	40	static
+../Core/Src/integration_max6650.c:244:13:max6650_read_register	48	static
+../Core/Src/integration_max6650.c:257:17:calculate_rpm_from_tacho	24	static

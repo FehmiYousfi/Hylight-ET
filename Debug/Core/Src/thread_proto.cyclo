@@ -1,0 +1,10 @@
+../Core/Src/thread_proto.c:34:6:split_uint16	1
+../Core/Src/thread_proto.c:39:6:split_int16	1
+../Core/Src/thread_proto.c:44:6:can_logger_cycle	5
+../Core/Src/thread_proto.c:86:6:driver_coll_cycle	1
+../Core/Src/thread_proto.c:91:6:mux_pres_cycle	9
+../Core/Src/thread_proto.c:152:6:uart_logger_cycle	4
+../Core/Src/thread_proto.c:199:6:HAL_UARTEx_RxEventCallback	2
+../Core/Src/thread_proto.c:209:6:handle_uart_cmd	3
+../Core/Src/thread_proto.c:222:6:uart_notifications_cycle	3
+../Core/Src/thread_proto.c:241:6:perform_setup_threads	1
