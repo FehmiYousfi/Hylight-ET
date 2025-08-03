@@ -15,6 +15,8 @@ uint16_t *loader_gpio = NULL;
 
 bool can_gpio_verification;
 
+int global_action_flag =0;
+
 #define CAN_GPIO_TRIGGERED 0x008
 #define CAN_GPIO_NON_TRIGGERED 0x009
 
@@ -117,11 +119,25 @@ void mux_pres_cycle(void const *argument){
 
   for(;;) {
     if(init_success){
+      if (global_action_flag !=0){
+    	  switch(global_action_flag){
+    	  case 1:
+          MAX6650_ControlFan(&fan_controller, CFF_ON);
+    		  break;
+    	  case 2:
+          MAX6650_ControlFan(&fan_controller, CFF_OFF);
+    		  break;
+    	  default :
+          MAX6650_ControlFan(&fan_controller, CFF_AUTO);
+    		  break;
+    	  }
+        global_action_flag =0;
+      }
       if (bmp280_multi_force_measurement(&sensor_system)) {
-        HAL_Delay(100);            
+        HAL_Delay(100);
         while (bmp280_multi_is_measuring(&sensor_system)) {
           HAL_Delay(10);
-        }            
+        }
         if (bmp280_multi_read_differences(&sensor_system, &pressure_data)) {
           g_sensor_data->delta_pres_0 = pressure_data.delta_pres_0;
           g_sensor_data->delta_pres_1 = pressure_data.delta_pres_1;
@@ -139,13 +155,14 @@ void mux_pres_cycle(void const *argument){
     }
     if(init_succ){
       if (MAX6650_ReadData(&fan_controller, &fan_data)) {
-        g_driver_data->fan_rpm = fan_data.fan_rpm; 
-        g_driver_data->status_flag = fan_data.status_flag; 
+        g_driver_data->fan_rpm = fan_data.fan_rpm;
+        g_driver_data->status_flag = fan_data.status_flag;
       }
     }else {
         g_driver_data->fan_rpm = 1200; //Mock Data
         g_driver_data->status_flag = HAL_OK;  //Mock Data
     }
+	  HAL_Delay(100);
     osDelay(1);
   }
 };
@@ -210,13 +227,16 @@ void handle_uart_cmd(uart_rx_command_t* current_command){
   switch(current_command->commandvalue){
     case CFF_ON:
       NOTIFY_MESSAGE("Command Target ON");
-      return;
+      global_action_flag = 1;
+      break;
     case CFF_OFF:
       NOTIFY_MESSAGE("Command Target OFF");
-      return;
+      global_action_flag = 2;
+      break;
     default :
       NOTIFY_MESSAGE("Command Target AUTO");
-      return;
+      global_action_flag = 3;
+      break;
   }
 }
 void uart_notifications_cycle(void const *argument){
